@@ -4,42 +4,56 @@ from pyrogram.types import InlineKeyboardButton
 class Data:
     # Start Message
     START = """
-- مرحبـاً بـك عزيـزي {}
+Hey {}
 
-- فـي بـوت {}
+Welcome to {}
 
-- يعمـل هـذا البـوت لمساعدتـك بطريقـة سهلـه للحصـول على كـود تيرمكـس تم انشـاء هـذا البـوت بواسطـة : @FLASH_MASR
+If you don't trust this bot, 
+1) stop reading this message
+2) delete this chat
+
+Still reading?
+You can use me to generate pyrogram and telethon string session. Use below buttons to learn more !
+
+By @FLASH_MASR
     """
 
     # Home Button
-    home_buttons = [        [InlineKeyboardButton("- بـدء إستخـراج كـود .", callback_data="generate")],        [InlineKeyboardButton(text="- رجوع .", callback_data="home")]    ]
+    home_buttons = [
+        [InlineKeyboardButton("🔥 Start Generating Session 🔥", callback_data="generate")],
+        [InlineKeyboardButton(text="🏠 Return Home 🏠", callback_data="home")]
+    ]
 
-    generate_button = [        [InlineKeyboardButton("- بـدء إستخـراج كـود .", callback_data="generate")]    ]
+    generate_button = [
+        [InlineKeyboardButton("🔥 Start Generating Session 🔥", callback_data="generate")]
+    ]
 
     # Rest Buttons
-    buttons = [        [InlineKeyboardButton("- بـدء إستخـراج كـود .", callback_data="generate")],        [InlineKeyboardButton("- مـطـور السـورس .", url="https://t.me/FLASH_MASR")],
-        [            InlineKeyboardButton("- التعـليمـات ؟! .", callback_data="help"),            InlineKeyboardButton("- حـول البـوت .", callback_data="about")        ],]
+    buttons = [
+        [InlineKeyboardButton("🔥 Start Generating Session 🔥", callback_data="generate")],
+        [InlineKeyboardButton("✨ 𝐂𝐎𝐃𝐄𝐑✓ ✨", url="https://t.me/FLASH_MASR")],
+        [
+            InlineKeyboardButton("How to Use ❔", callback_data="help"),
+            InlineKeyboardButton("🎪 About 🎪", callback_data="about")
+        ],
+        [InlineKeyboardButton("♥ 𝐂𝐎𝐃𝐄𝐑 ♥", url="https://t.me/FLASH_MASR")],
+    ]
 
     # Help Message
     HELP = """
-** - اوامـر البــوت : **
+✨ **Available Commands** ✨
 
-/about - حـول البـوت
-/help - التعليـمات
-/start - ابـدأ 
-/generate - بـدء إستخـراج جلسـه جديـده
-/cancel - الغـاء
-/restart - اعـادة الاستخـراج
+/about - About The Bot
+/help - This Message
+/start - Start the Bot
+/generate - Start Generating Session
+/cancel - Cancel the process
+/restart - Cancel the process
 """
 
     # About Message
     ABOUT = """
-**- حـول البـوت .** 
+**About This Bot** 
 
-- بـوت استخـراج كـود تيرمكـس خـاص بســورس جيبثون
-- مـطـور السـورس : [—͟͟͞͞✯ ᏙᎥᎡႮՏ ┋✘🏴󠁧󠁢󠁥󠁮󠁧󠁿!](https://t.me/FLASH_MASR)
-
-- المطور : @FLASH_MASR .
-
-- لغـة البـوت : بـايثـون .
+Developer : @FLASH_MASR
     """

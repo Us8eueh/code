@@ -1,7 +1,12 @@
+import traceback
+
 from Data import Data
 from pyrogram import Client
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
-from StringSessionBot.generate import generate_session, ERROR_MESSAGE
+from StringSessionBot.generate import generate_session
+
+
+# Callbacks
 @Client.on_callback_query()
 async def _callbacks(bot: Client, callback_query: CallbackQuery):
     user = await bot.get_me()
@@ -34,21 +39,32 @@ async def _callbacks(bot: Client, callback_query: CallbackQuery):
         await bot.edit_message_text(
             chat_id=chat_id,
             message_id=message_id,
-            text="**طـريقـة استخـدام البـوت**\n" + Data.HELP,
+            text="**Here's How to use me**\n" + Data.HELP,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(Data.home_buttons),
         )
     elif query == "generate":
         await callback_query.message.reply(
-            "- اضغـط علـى الزر للبـدء ⌬...",
+            "Please choose the python library you want to generate string session for",
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("كود تيرمكـس جيبثون", callback_data="telethon")
+                InlineKeyboardButton("Pyrogram", callback_data="pyrogram"),
+                InlineKeyboardButton("Telethon", callback_data="telethon")
             ]])
         )
-    elif query in ["telethon"]:
+    elif query in ["pyrogram", "telethon"]:
         await callback_query.answer()
         try:
-            if query == "telethon":
+            if query == "pyrogram":
+                await generate_session(bot, callback_query.message)
+            else:
                 await generate_session(bot, callback_query.message, telethon=True)
         except Exception as e:
+            print(traceback.format_exc())
+            print(e)
             await callback_query.message.reply(ERROR_MESSAGE.format(str(e)))
+
+
+ERROR_MESSAGE = "Oops! An exception occurred! \n\n**Error** : {} " \
+            "\n\nPlease visit @StarkBotsChat if this message doesn't contain any " \
+            "sensitive information and you if want to report this as " \
+            "this error message is not being logged by us!"
